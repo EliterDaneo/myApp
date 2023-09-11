@@ -58,7 +58,8 @@ class DataSiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $DataSiswa = DataSiswa::findOrFail($id);
+        return view('DataSiswa.show', compact('DataSiswa'));
     }
 
     /**

@@ -21,14 +21,14 @@
                         $no = 1;
                     @endphp
                     <th scope="row">{{ $no++ }}</th>
-                    <td><img src="{{ asset('storage/fotosiswa/' . $DataSiswa->foto) }}" alt="foto siswa" width="75px">
+                    <td><img src="{{ asset('storage/fotosiswa/' . $DataSiswa->foto) }}" alt="foto siswa" width="50px">
                     </td>
                     <td>{{ $DataSiswa->nama }}</td>
                     <td>{{ $DataSiswa->kelas }}</td>
                     <td>{{ $DataSiswa->alamat }}</td>
                     <td class="text-center">
                         <a href="" class="btn btn-primary">Edit</a>
-                        <a href="" class="btn btn-warning">Lihat</a>
+                        <a href="{{ route('DataSiswa.show', $DataSiswa->id) }}" class="btn btn-warning">Lihat</a>
                         <a href="" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
