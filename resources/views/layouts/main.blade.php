@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <h1>{{ $title ?? 'Not Found' }}</h1>
-                    <p>{{ $name ?? 'Tidak Ada Name' }}</p>
+                    <p>{{ $name ?? 'Tidak Ada Nama' }}</p>
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">

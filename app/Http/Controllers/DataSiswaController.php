@@ -12,8 +12,10 @@ class DataSiswaController extends Controller
      */
     public function index()
     {
-        $DataSiwas = DataSiswa::lastest()->paginate(5);
-        return view('datasiswa.index', compact('DataSiwas'));
+        $title = "Data Siswa";
+        $name = "Laravel 10 dan Bootstrap v5";
+        $DataSiwas = DataSiswa::latest()->paginate(5);
+        return view('datasiswa.index', compact('DataSiwas', 'title', 'name'));
     }
 
     /**
@@ -21,7 +23,8 @@ class DataSiswaController extends Controller
      */
     public function create()
     {
-        return view('datasiswa.tambahData');
+        $title = "Create a new resource";
+        return view('datasiswa.create', compact('title'));
     }
 
     /**
@@ -29,7 +32,25 @@ class DataSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|min:5',
+            'foto' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'kelas' => 'required',
+            'alamat' => 'required|min:5',
+        ]);
+
+        $foto = $request->file('foto');
+        $foto->storeAs('public/fotosiswa', $foto->hashName());
+
+        DataSiswa::create([
+            'nama'      => $request->nama,
+            'foto'      => $foto->hashName(),
+            'kelas'     => $request->kelas,
+            'alamat'    => $request->alamat
+        ]);
+
+        return redirect()->route('DataSiswa.index')
+            ->with('success', 'Data Siswa Berhasil Disimpan');
     }
 
     /**

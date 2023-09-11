@@ -10,16 +10,22 @@
                 <th scope="col">Gambar</th>
                 <th scope="col">Jurusan</th>
                 <th scope="col">Kelas</th>
+                <th scope="col">Alamat</th>
                 <th scope="col" class="text-center">Aksi</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($DataSiwas as $DataSiswa)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    @php
+                        $no = 1;
+                    @endphp
+                    <th scope="row">{{ $no++ }}</th>
+                    <td><img src="{{ asset('storage/fotosiswa/' . $DataSiswa->foto) }}" alt="foto siswa" width="75px">
+                    </td>
+                    <td>{{ $DataSiswa->nama }}</td>
+                    <td>{{ $DataSiswa->kelas }}</td>
+                    <td>{{ $DataSiswa->alamat }}</td>
                     <td class="text-center">
                         <a href="" class="btn btn-primary">Edit</a>
                         <a href="" class="btn btn-warning">Lihat</a>
@@ -33,4 +39,5 @@
             @endforelse
         </tbody>
     </table>
+    {{ $DataSiwas->links() }}
 @endsection
